@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Venda - Açai098</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
+
+ </head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+  <!-- Main Header -->
+  <header class="main-header">
+    <!-- Logo -->
+    <a href="index.html" class="logo">
+      <span class="logo-mini">AÇAI</span>
+      <span class="logo-lg">Açai-098</span>
+    </a>
+
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-static-top" role="navigation">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+    </nav>
+  </header>
+
+  <!-- Left side column -->
+  <aside class="main-sidebar">
+    <section class="sidebar">
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img src="dist/img/avatar5.png" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          <p>Atendente</p>
+          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">MENU</li>
+        <li><a href="cadastro.html"><i class="fa fa-cube"></i> <span>Cadastro de Itens</span></a></li>
+        <li><a href="venda.html"><i class="fa fa-shopping-cart"></i> <span>Venda de Açaí</span></a></li>
+        <li class="active"><a href="historico.html"><i class="fa fa-history"></i> <span>Histórico de Vendas</span></a></li>
+        <li><a href="logout.html"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
+      </ul>
+    </section>
+  </aside>
+
+  <!-- Content Wrapper -->
+  <div class="content-wrapper">
+    <section class="content-header">
+      <h1>
+        Venda de Açaí
+        <small>Realize uma nova venda</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
+        <li class="active">Venda de Açaí</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Nova Venda</h3>
+            </div>
+            <div class="box-body">
+              <form id="form-venda">
+                <!-- Nome do Cliente -->
+                <div class="form-group">
+                  <label for="nomeCliente">Nome do Cliente</label>
+                  <input type="text" class="form-control" id="nomeCliente" placeholder="Digite o nome do cliente" required>
+                </div>
+
+                <!-- Escolha do Copo -->
+                <div class="form-group">
+                  <label for="copo">Escolha o Copo</label>
+                  <select class="form-control" id="copo" required>
+                    <!-- Copos serão populados dinamicamente -->
+                  </select>
+                </div>
+
+                <!-- Escolha da Fruta -->
+                <div id="frutas-container">
+                  <div class="form-group">
+                    <label for="fruta">Escolha a Fruta</label>
+                    <select class="form-control fruta-select" id="fruta" required>
+                      <!-- Frutas serão populadas dinamicamente -->
+                    </select>
+                  </div>
+                </div>
+                <button type="button" class="btn btn-primary" id="add-fruta">Adicionar Mais uma Fruta</button>
+
+                <!-- Escolha da Cobertura -->
+                <div id="coberturas-container">
+                  <div class="form-group">
+                    <label for="cobertura">Escolha a Cobertura</label>
+                    <select class="form-control cobertura-select" id="cobertura" required>
+                      <!-- Coberturas serão populadas dinamicamente -->
+                    </select>
+                  </div>
+                </div>
+                <button type="button" class="btn btn-primary" id="add-cobertura">Adicionar Mais uma Cobertura</button>
+
+                <!-- Escolha dos Acompanhamentos -->
+                <div id="acompanhamentos-container">
+                  <div class="form-group">
+                    <label for="acompanhamento">Escolha o Acompanhamento</label>
+                    <select class="form-control acompanhamento-select" id="acompanhamento" required>
+                      <!-- Acompanhamentos serão populadas dinamicamente -->
+                    </select>
+                  </div>
+                </div>
+                <button type="button" class="btn btn-primary" id="add-acompanhamento">Adicionar Mais um Acompanhamento</button>
+
+                <!-- Escolha dos Adicionais -->
+                <div id="adicionais-container">
+                  <div class="form-group">
+                    <label for="adicional">Deseja Adicionais?</label>
+                    
+                  </div>
+                </div>
+                <button type="button" class="btn btn-primary" id="add-adicional">Adicionar Mais um Adicional (R$2,00)</button>
+
+                <!-- Retirada ou Entrega -->
+                <div class="form-group">
+                    <label for="tipoEntrega">Tipo de Entrega</label>
+                    <select class="form-control" id="tipoEntrega" required>
+                      <option value="retirada">Retirada</option>
+                      <option value="entrega">Entrega</option>
+                    </select>
+                  </div>
+  
+                  <!-- Valor da Entrega -->
+                  <div class="form-group" id="valorEntregaContainer" style="display: none;">
+                    <label for="valorEntrega">Valor da Entrega</label>
+                    <input type="number" class="form-control" id="valorEntrega" placeholder="Digite o valor da entrega">
+                  </div>
+  
+                <!-- Resumo -->
+                <div class="form-group">
+                  <h4>Resumo do Pedido:</h4>
+                  <ul id="resumo-pedido">
+                    <!-- Resumo será populado dinamicamente -->
+                  </ul>
+                  <button type="button" class="btn btn-primary" id="btn-imprimir" style="display:none;">Imprimir</button>
+                </div>
+
+                <!-- Botão Mostrar Resumo -->
+         <button type="button" class="btn btn-info" id="btn-mostrar-resumo">Mostrar Resumo</button>
+
+        <!-- Botão Finalizar Venda -->
+        <button type="button" class="btn btn-success" id="btn-finalizar-venda" style="display:none;">Finalizar Venda</button>
+
+             
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      
+    </div>
+    
+  </footer>
+</div>
+
+<!-- Incluindo os scripts necessários -->
+<script src="js/venda.js"></script>
+</body>
+</html>
