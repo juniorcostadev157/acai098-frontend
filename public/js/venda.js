@@ -165,6 +165,7 @@ function calcularTotal() {
 }
 
 // Função para gerar o resumo do pedido
+// Função para gerar o resumo do pedido
 function gerarResumo() {
     const resumo = document.getElementById('resumo-pedido');
     resumo.innerHTML = '';
@@ -198,19 +199,26 @@ function gerarResumo() {
         }
     });
 
-    const tipoEntrega = document.getElementById('tipoEntrega').value;
+    let tipoEntrega = document.getElementById('tipoEntrega').value;
     if (tipoEntrega === 'entrega') {
+        tipoEntrega = 'Delivery';
+    } else {
+        tipoEntrega = 'Retirada';
+    }
+
+    if (tipoEntrega === 'Delivery') {
         const valorEntrega = document.getElementById('valorEntrega').value;
         resumo.innerHTML += `<li><strong>Valor da Entrega:</strong> R$${valorEntrega || 0}</li>`;
     }
 
-    resumo.innerHTML += `<li><strong>Tipo de Entrega:</strong> ${tipoEntrega.charAt(0).toUpperCase() + tipoEntrega.slice(1)}</li>`;
+    resumo.innerHTML += `<li><strong>Tipo de Entrega:</strong> ${tipoEntrega}</li>`;
     resumo.innerHTML += `<li><strong>Total:</strong> R$${calcularTotal()}</li>`;
 
     // Mostrar o botão "Imprimir" e "Finalizar Venda"
     document.getElementById('btn-imprimir').style.display = 'inline-block';
     document.getElementById('btn-finalizar-venda').style.display = 'inline-block';
 }
+
 
 // Função para imprimir o resumo
 function imprimirResumo() {
