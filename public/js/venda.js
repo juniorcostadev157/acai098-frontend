@@ -165,7 +165,6 @@ function calcularTotal() {
 }
 
 // Função para gerar o resumo do pedido
-// Função para gerar o resumo do pedido
 function gerarResumo() {
     const resumo = document.getElementById('resumo-pedido');
     resumo.innerHTML = '';
@@ -214,11 +213,16 @@ function gerarResumo() {
     resumo.innerHTML += `<li><strong>Tipo de Entrega:</strong> ${tipoEntrega}</li>`;
     resumo.innerHTML += `<li><strong>Total:</strong> R$${calcularTotal()}</li>`;
 
+    // Adicionando Observações no Resumo
+    const observacoes = document.getElementById('observacoes').value;
+    if (observacoes) {
+        resumo.innerHTML += `<li><strong>Observações:</strong> ${observacoes}</li>`;
+    }
+
     // Mostrar o botão "Imprimir" e "Finalizar Venda"
     document.getElementById('btn-imprimir').style.display = 'inline-block';
     document.getElementById('btn-finalizar-venda').style.display = 'inline-block';
 }
-
 
 // Função para imprimir o resumo
 function imprimirResumo() {
@@ -235,44 +239,6 @@ function imprimirResumo() {
     printWindow.print();
 }
 
-
-// Função para finalizar a venda e salvar no backend
-async function finalizarVenda() {
-    const resumoPedido = {
-        cliente: document.getElementById('nomeCliente').value,
-        copo: document.getElementById('copo').selectedOptions[0].textContent,
-        frutas: Array.from(document.querySelectorAll('.fruta-select')).map(select => select.selectedOptions[0].textContent),
-        coberturas: Array.from(document.querySelectorAll('.cobertura-select')).map(select => select.selectedOptions[0].textContent),
-        acompanhamentos: Array.from(document.querySelectorAll('.acompanhamento-select')).map(select => select.selectedOptions[0].textContent),
-        adicionais: Array.from(document.querySelectorAll('.adicional-select')).map(select => select.selectedOptions[0]?.textContent || ''),
-        tipoEntrega: document.getElementById('tipoEntrega').value,
-        valorEntrega: document.getElementById('valorEntrega').value || 0,
-        total: calcularTotal(),
-    };
-
-    try {
-        // Fazer a requisição POST para salvar no backend
-        const response = await fetch(`${API_BASE_URL}/historico`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(resumoPedido)
-        });
-
-        if (response.ok) {
-            alert('Venda finalizada e salva no histórico com sucesso!');
-            location.reload(); // Reinicia o formulário
-        } else {
-            throw new Error('Erro ao salvar no histórico');
-        }
-    } catch (error) {
-        console.error('Erro ao salvar no Firestore:', error);
-        alert('Erro ao salvar o histórico da venda.');
-    }
-}
-
-
 // Inicializar a página de venda
 window.onload = async () => {
     await inicializarSelects();
@@ -283,5 +249,4 @@ window.onload = async () => {
     document.getElementById('tipoEntrega').addEventListener('change', toggleValorEntrega);
     document.getElementById('btn-mostrar-resumo').addEventListener('click', gerarResumo);
     document.getElementById('btn-imprimir').addEventListener('click', imprimirResumo);
-    document.getElementById('btn-finalizar-venda').addEventListener('click', finalizarVenda);
 };

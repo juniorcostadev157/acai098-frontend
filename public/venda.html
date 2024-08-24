@@ -9,8 +9,7 @@
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
   <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
-
- </head>
+</head>
 
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -130,7 +129,6 @@
                 <div id="adicionais-container">
                   <div class="form-group">
                     <label for="adicional">Deseja Adicionais?</label>
-                    
                   </div>
                 </div>
                 <button type="button" class="btn btn-primary" id="add-adicional">Adicionar Mais um Adicional (R$2,00)</button>
@@ -142,14 +140,20 @@
                       <option value="retirada">Retirada</option>
                       <option value="entrega">Delivery</option>
                     </select>
-                  </div>
-  
-                  <!-- Valor da Entrega -->
-                  <div class="form-group" id="valorEntregaContainer" style="display: none;">
+                </div>
+
+                <!-- Valor da Entrega -->
+                <div class="form-group" id="valorEntregaContainer" style="display: none;">
                     <label for="valorEntrega">Valor da Entrega</label>
                     <input type="number" class="form-control" id="valorEntrega" placeholder="Digite o valor da entrega">
-                  </div>
-  
+                </div>
+
+                <!-- Observações -->
+                <div class="form-group">
+                    <label for="observacoes">Observações</label>
+                    <textarea class="form-control" id="observacoes" placeholder="Digite observações sobre o pedido"></textarea>
+                </div>
+
                 <!-- Resumo -->
                 <div class="form-group">
                   <h4>Resumo do Pedido:</h4>
@@ -160,12 +164,10 @@
                 </div>
 
                 <!-- Botão Mostrar Resumo -->
-         <button type="button" class="btn btn-info" id="btn-mostrar-resumo">Mostrar Resumo</button>
+                <button type="button" class="btn btn-info" id="btn-mostrar-resumo">Mostrar Resumo</button>
 
-        <!-- Botão Finalizar Venda -->
-        <button type="button" class="btn btn-success" id="btn-finalizar-venda" style="display:none;">Finalizar Venda</button>
-
-             
+                <!-- Botão Finalizar Venda -->
+                <button type="button" class="btn btn-success" id="btn-finalizar-venda" style="display:none;">Finalizar Venda</button>
               </form>
             </div>
           </div>
@@ -177,9 +179,7 @@
   <!-- Main Footer -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      
     </div>
-    
   </footer>
 </div>
 
